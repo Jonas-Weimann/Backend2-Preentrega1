@@ -1,0 +1,14 @@
+<main class="product-page" >
+    <h1>PRODUCT LIST</h1>
+    <div class="products-container">
+        {{#each products}}
+        <div class="product-card">
+            <img src={{this.img}} alt={{this.title}}>
+            <span class="card--title"><b>{{this.title}}</b></span>
+            <span class="card--cat"><b>{{this.category}}</b></span>
+            <p class="card--desc">{{this.description}}</p>
+            <span class="card--price"><b>{{formatear this.price}}</b></span>
+        </div>
+        {{/each}}
+    </div>
+</main>

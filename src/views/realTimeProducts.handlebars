@@ -1,0 +1,46 @@
+<main class="real-time-products-page">
+    <h1>REAL TIME PRODUCTS</h1>
+    <div class="form-container">
+        <form id="add-product-form">
+            <label for="input-image">Imagen
+                <input id="input-image" type="file" name="img" accept="image/*">
+            </label>
+            <label for="input-title">Titulo
+                <input id="input-title" type="text" name="title" required>
+            </label>
+            <label for="input-desc">Descripción
+                <input id="input-desc" type="text" name="description" required>
+            </label>
+            <label for="input-code">Código
+                <input id="input-code" type="text" name="code" required>
+            </label>
+            <label for="input-price">Precio
+                <input id="input-price" type="number" name="price" min="0" required>
+            </label>
+            <label for="input-stock">Stock
+                <input id="input-stock" type="number" name="stock" min="0" required>
+            </label>
+            <label for="input-cat">Categoría
+                <input id="input-cat" type="text" name="category" required>
+            </label>
+            <button type="submit">Agregar producto</button>
+        </form>
+    </div>
+    <hr>
+    <div class="products-container">
+        {{#each products}}
+        <div class="product-card">
+            <span class="card--id">{{this.id}}</span>
+            <img src="{{this.img}}" alt="{{this.title}}">
+            <span class="card--title"><b>{{this.title}}</b></span>
+            <span class="card--cat"><b>{{this.category}}</b></span>
+            <p class="card--desc">{{this.description}}</p>
+            <span class="card--price"><b>{{formatear this.price}}</b></span>
+            <button class="card--delete">Eliminar</button>
+        </div>
+        {{/each}}
+    </div>
+</main>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/static/js/realTimeProducts.js"></script>

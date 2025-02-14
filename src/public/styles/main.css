@@ -1,0 +1,193 @@
+@font-face {
+    font-family: coco;
+    src: url(/static/fonts/CocoGothic_trial.ttf);
+}
+
+@font-face {
+    font-family: poppins;
+    src: url(/static/fonts/Poppins-Regular.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*PRODUCTS PAGE*/
+.product-page{
+    background-color: aquamarine;
+    width: 100%;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    padding: 5rem 0;
+}
+
+.product-page h1{
+    font-family: coco;
+    font-size: 3rem;
+    color: rgb(10, 28, 83);
+    font-weight: 900;
+}
+
+.products-container{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.product-card{
+    border-radius: 2rem;
+    width: 20rem;
+    min-height: 30rem;
+    background-color: rgba(15, 61, 102, 0.575);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+    margin: 1rem 0;
+    padding: 1rem;
+}
+
+.product-card .card--id{
+    position: absolute;
+    top: 0;
+    font-family: poppins;
+    text-align: center;
+    font-size: .8rem;
+    color: #232323;
+}
+
+.product-card img{
+    width: 100%;
+    border-radius: 1rem;
+    aspect-ratio: 1/1;
+}
+
+.product-card .card--cat{
+    position: absolute;
+    font-family: poppins;
+    font-size: 1rem;
+    top: -3rem;
+    left: 0;
+    color: white;
+    background-color: blue;
+    padding: .5rem 2rem;
+    border-radius: 2rem;
+}
+
+.product-card .card--title{
+    font-family: coco;
+    font-size: 1.5rem;
+}
+
+.product-card .card--desc{
+    font-family: poppins;
+    font-size: 1rem;
+}
+
+.product-card .card--price{
+    font-family: poppins;
+}
+
+.card--delete{
+    background-color: tomato;
+    border-radius: 1rem;
+    width: 100%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: white;
+    font-family: poppins;
+    font-size: 1.5rem;
+    padding: .5rem 2rem;
+}
+
+/*REAL TIME PRODUCTS PAGE*/
+.real-time-products-page{
+    background-color: rgb(39, 71, 61);
+    width: 100%;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    padding: 5rem 0;
+}
+
+.form-container {
+    width: 30%;
+}
+
+.real-time-products-page h1{
+    font-family: coco;
+    font-size: 3rem;
+    color: aqua;
+    font-weight: 900;
+}
+
+.real-time-products-page hr{
+    width: 100%;
+    border: 2px solid aquamarine;
+}
+
+.real-time-products-page .product-card{
+    background-color: #3f8f95;
+}
+
+.form-container form{
+    background-color: #232323;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    border-radius: 1rem;
+    gap: 1rem;
+    padding: 2rem 1rem;
+    width: 100%;
+    min-height: 50dvh;
+}
+
+.form-container form label{
+    width: 100%;
+    color: aqua;
+    font-family: poppins;
+    font-size: 1.2rem;
+    transform: translateY(1rem);
+}
+
+.form-container form input{
+    width: 100%;
+    padding: .5rem 1rem;
+    font-family: poppins;
+    background-color: #005d5d83;
+    color: aqua;
+    border-radius: 1rem;
+    border: none;
+}
+.form-container form input:focus{
+    border: none;
+    outline: aqua solid 2px;
+}
+
+.form-container form button{
+    background-color: aqua;
+    padding: 1rem 3rem;
+    width: 100%;
+    border-radius: 2rem;
+    border: none;
+    margin-top: 2rem;
+    color: #232323;
+    font-size: 1.3rem;
+    font-family: poppins;
+}
