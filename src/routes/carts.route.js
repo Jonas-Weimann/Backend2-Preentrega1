@@ -1,7 +1,9 @@
 import { Router } from "express";
-import { v4 as uuidv4 } from "uuid";
+import { CarritosModel } from "../models/productos.model.js";
+import { CarritosDao } from "../models/dao/productos.dao.js";
 
 const router = Router();
+const CarritosService = new CarritosDao(CarritosModel);
 
 router.post("/", (req, res) => {});
 

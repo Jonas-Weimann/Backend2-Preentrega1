@@ -1,6 +1,9 @@
 import { Router } from "express";
+import { ProductosModel } from "../models/productos.model.js";
+import { ProductosDao } from "../models/dao/productos.dao.js";
 
 const router = Router();
+const ProductosService = new ProductosDao(ProductosModel);
 
 //ENDPOINT GET
 router.get("/", (req, res) => {});
