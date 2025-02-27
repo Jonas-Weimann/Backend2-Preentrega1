@@ -25,8 +25,8 @@ app.use("/static", express.static(path.join(process.cwd(), "src", "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/products/", ProductsRoute);
-app.use("/carts/", CartsRoute);
+app.use("/api/products/", ProductsRoute);
+app.use("/api/carts/", CartsRoute);
 
 //ENDPOINT POST PARA CARGAR LAS IMAGENES CON MULTER
 app.post("/upload", upload.single("img"), (req, res) => {
