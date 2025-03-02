@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { paginateV2 } from "mongoose-paginate-v2";
+import paginateV2 from "mongoose-paginate-v2";
 
 const carritoCollection = "Carritos";
 const carritoSchema = new Schema({
@@ -8,4 +8,4 @@ const carritoSchema = new Schema({
 
 carritoSchema.plugin(paginateV2);
 
-export const CarritoModel = model(carritoCollection, carritoSchema);
+export const CarritosModel = model(carritoCollection, carritoSchema);

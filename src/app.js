@@ -1,6 +1,6 @@
 import express from "express";
-import ProductsRoute from "./routes/products.route.js";
-import CartsRoute from "./routes/carts.route.js";
+import ProductsRoute from "./routes/productos.route.js";
+import CartsRoute from "./routes/carritos.route.js";
 import handlebars from "express-handlebars";
 import path from "path";
 import { formatear } from "./utils.js";
@@ -25,8 +25,9 @@ app.use("/static", express.static(path.join(process.cwd(), "src", "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/products/", ProductsRoute);
-app.use("/api/carts/", CartsRoute);
+app.use("/", ProductsRoute);
+app.use("/api/productos/", ProductsRoute);
+app.use("/api/carritos/", CartsRoute);
 
 //ENDPOINT POST PARA CARGAR LAS IMAGENES CON MULTER
 app.post("/upload", upload.single("img"), (req, res) => {

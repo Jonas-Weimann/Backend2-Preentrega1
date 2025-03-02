@@ -1,14 +1,16 @@
-<main class="product-page" >
-    <h1>PRODUCT LIST</h1>
-    <div class="products-container">
-        {{#each products}}
-        <div class="product-card">
-            <img src={{this.img}} alt={{this.title}}>
-            <span class="card--title"><b>{{this.title}}</b></span>
-            <span class="card--cat"><b>{{this.category}}</b></span>
-            <p class="card--desc">{{this.description}}</p>
-            <span class="card--price"><b>{{formatear this.price}}</b></span>
-        </div>
-        {{/each}}
-    </div>
+<main class="product-page">
+  <h1>PRODUCT LIST</h1>
+  <h2>{{currentPage}}</h2>
+  <div class="products-container">
+    <a href="{{prevPage}}">previa</a>
+    {{#each productos}}
+      <div class="product-card">
+        <img src="{{this.thumbnails}}" alt="{{this.title}}" />
+        <span><b>{{this.stock}}</b></span>
+        <p>{{this.description}}</p>
+        <span><b>{{formatear this.price}}</b></span>
+      </div>
+    {{/each}}
+    <a href="{{nextPage}}">siguiente</a>
+  </div>
 </main>

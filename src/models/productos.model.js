@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { paginateV2 } from "mongoose-paginate-v2";
+import mongoosepaginateV2 from "mongoose-paginate-v2";
 
-const prodcutoCollection = "Productos";
+const productoCollection = "Productos";
 const productoSchema = new Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
@@ -13,6 +13,6 @@ const productoSchema = new Schema({
   thumbnails: { type: Array, default: [] },
 });
 
-productoSchema.plugin(paginateV2);
+productoSchema.plugin(mongoosepaginateV2);
 
-export const ProductoModel = model(prodcutoCollection, productoSchema);
+export const ProductosModel = model(productoCollection, productoSchema);
