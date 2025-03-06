@@ -66,22 +66,37 @@ router.get("/", async (req, res) => {
 });
 
 //ENDPOINT GET BY ID
-router.get("/:pid", (req, res) => {});
+router.get("/:pid", async (req, res) => {
+  const { pid } = req.params;
+  const producto = await ProductosService.getById(pid);
+  if (!producto) return res.status(404).send("Producto no encontrado");
+  res.status(201).json(producto);
+});
 
 //ENDPOINT POST
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   const producto = req.body;
   const result = Array.isArray(producto)
-    ? ProductosService.createMany(producto)
-    : ProductosService.create(producto);
+    ? await ProductosService.createMany(producto)
+    : await ProductosService.create(producto);
   if (!result) res.status(400).send("Error al crear los productos");
   res.status(201).send("Productos creados con exito");
 });
 
 //ENDPOINT PUT BY ID
-router.put("/:pid", (req, res) => {});
+router.put("/:pid", async (req, res) => {
+  const { pid } = req.params;
+  const result = await ProductosService.update(pid, req.body);
+  if (!result) return res.status(400).send("Error al actualizar el producto");
+  res.status(201).send("Producto actualizado con exito");
+});
 
 //ENDPOINT DELETE BY ID
-router.delete("/:pid", (req, res) => {});
+router.delete("/:pid", async (req, res) => {
+  const { pid } = req.params;
+  const result = await ProductosService.delete(pid);
+  if (!result) return res.status(400).send("Error al eliminar el producto");
+  res.status(201).send("Producto eliminado con exito");
+});
 
 export default router;
