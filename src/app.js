@@ -1,6 +1,7 @@
 import express from "express";
 import ProductsRoute from "./routes/productos.route.js";
 import CartsRoute from "./routes/carritos.route.js";
+import ViewsRoute from "./routes/views.route.js";
 import handlebars from "express-handlebars";
 import path from "path";
 import { formatear } from "./utils.js";
@@ -25,7 +26,7 @@ app.use("/static", express.static(path.join(process.cwd(), "src", "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", ProductsRoute);
+app.use("/", ViewsRoute);
 app.use("/api/products/", ProductsRoute);
 app.use("/api/carts/", CartsRoute);
 

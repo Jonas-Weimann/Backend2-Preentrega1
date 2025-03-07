@@ -39,13 +39,13 @@ router.get("/", async (req, res) => {
 
   //Creo los links de paginación
   productos["prevLink"] = productos.hasPrevPage
-    ? `/api/productos?limit=${limit || ""}&page=${productos.prevPage}&sort=${
+    ? `/?limit=${limit || ""}&page=${productos.prevPage}&sort=${
         sort || ""
       }&query=${query || ""}`
     : null;
 
   productos["nextLink"] = productos.hasNextPage
-    ? `/api/productos?limit=${limit || ""}&page=${productos.nextPage}&sort=${
+    ? `/?limit=${limit || ""}&page=${productos.nextPage}&sort=${
         sort || ""
       }&query=${query || ""}`
     : null;
@@ -55,14 +55,7 @@ router.get("/", async (req, res) => {
 
   delete productos.docs;
 
-  res.json(productos);
-
-  // res.render("home", {
-  //   productos: JSON.parse(JSON.stringify(productos.docs)),
-  //   formatear,
-  //   prevPage: productos.prevLink,
-  //   nextPage: productos.nextLink,
-  // });
+  res.status(201).json(productos);
 });
 
 //ENDPOINT GET BY ID
