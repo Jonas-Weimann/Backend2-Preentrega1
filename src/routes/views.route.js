@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { ProductosModel } from "../models/productos.model.js";
-import { formatear } from "../utils.js";
+import { formatear, subtotal } from "../utils.js";
 import { CarritosModel } from "../models/carritos.model.js";
 import { CarritosDao } from "../models/dao/carritos.dao.js";
 import { ProductosDao } from "../models/dao/productos.dao.js";
@@ -83,10 +83,19 @@ router.get("/products/:pid", async (req, res) => {
 router.get("/carts/:cid", async (req, res) => {
   const { cid } = req.params;
   const carritoConProducts = await CarritosService.getAllFromCart(cid);
-  const products = carritoConProducts.products;
-  if (!carrito) return res.render("error", { error: "Producto no encontrado" });
+  if (!carritoConProducts)
+    return res.render("error", { error: "Carrito no encontrado" });
+  let products = [];
   //Renderizo una vista con el carrito seleccionado
-  res.render("cart", { productos: products });
+  for (const prod of carritoConProducts.products) {
+    const product = { ...prod.product._doc, quantity: prod.quantity };
+    products.push(product);
+  }
+  res.render("cart", {
+    subtotal,
+    carrito: cid,
+    productos: JSON.parse(JSON.stringify(products)),
+  });
 });
 
 export default router;

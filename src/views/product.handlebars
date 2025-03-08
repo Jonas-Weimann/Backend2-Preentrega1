@@ -1,0 +1,36 @@
+<main class="product-detail-page">
+  <div class="cart-icon-container">
+    <img class="cart-icon" src="/static/images/cart-icon.svg" alt="Cart Icon" />
+  </div>
+  <div class="product-detail-container">
+    <div class="product-detail">
+      <div class="product-detail-image">
+        <img src="{{producto.thumbnails}}" alt="{{producto.title}}" />
+      </div>
+      <div class="product-detail-info">
+        <span class="product-detail--cat">{{formatear producto.category}}</span>
+        <h1 class="product-detail--title">{{producto.title}}</h1>
+        <p class="product-detail--desc">{{producto.description}}</p>
+        <span class="product-detail--price"><b>{{formatear
+              producto.price
+            }}</b></span>
+        <div class="btn-container">
+          <a class="back-btn" href="/products"><img
+              src="/static/images/back-icon.svg"
+              alt="Back Icon"
+            />Volver a productos</a>
+          <a class="add-to-cart-btn" id="{{producto._id}}">
+            <img
+              src="/static/images/add-to-cart-icon.svg"
+              alt="Add To Cart Icon"
+            />Añadir al carrito</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<!--Librería Swiper-->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<script src="/static/js/product.js"></script>

@@ -17,11 +17,20 @@ const config = multer.diskStorage({
 
 export const upload = multer({ storage: config });
 
-export const formatear = (numero) => {
-  return new Intl.NumberFormat("es-Ar", {
-    style: "currency",
-    currency: "ARS",
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(numero);
+export const formatear = (input) => {
+  if (typeof input === "number") {
+    return new Intl.NumberFormat("es-Ar", {
+      style: "currency",
+      currency: "ARS",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(input);
+  }
+  if (typeof input === "string") {
+    return input.toUpperCase();
+  }
+};
+
+export const subtotal = (price, quantity) => {
+  return formatear(price * quantity);
 };

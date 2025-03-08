@@ -4,9 +4,8 @@ import CartsRoute from "./routes/carritos.route.js";
 import ViewsRoute from "./routes/views.route.js";
 import handlebars from "express-handlebars";
 import path from "path";
-import { formatear } from "./utils.js";
+import { formatear, subtotal } from "./utils.js";
 import { upload } from "./utils.js";
-import { v4 as uuidv4 } from "uuid";
 import { connectToMongo } from "./connections/mongo.js";
 
 const app = express();
@@ -16,6 +15,7 @@ app.engine(
   handlebars.engine({
     helpers: {
       formatear,
+      subtotal,
     },
   })
 );

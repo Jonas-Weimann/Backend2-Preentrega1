@@ -84,7 +84,6 @@ export class CarritosDao extends Common {
       carrito.products = carrito.products.filter(
         (prod) => String(prod.product) !== String(idProducto)
       );
-      carrito.products = [];
 
       //Actualizo el carrito
       const result = await this.update(id, carrito);

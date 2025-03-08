@@ -1,0 +1,31 @@
+<main class="cart-page">
+  <h1>Carrito</h1>
+  <div class="products-container">
+    {{#if productos}}
+      {{#each productos}}
+        <div class="product">
+          <img class="product-img" src="{{this.image}}" alt="{{this.title}}" />
+          <div class="product-info">
+            <h2>{{this.title}}</h2>
+            <p>{{this.description}}</p>
+            <p>Precio: ${{this.price}}</p>
+            <p>Cantidad: {{this.quantity}}</p>
+            <p>Total: {{ subtotal this.price this.quantity}}</p>
+          </div>
+          <a
+            class="delete-btn"
+            pid="{{this._id}}"
+            cid="{{../carrito}}"
+          ><img src="/static/images/delete-icon.svg" alt="Delete Icon"> Eliminar  </a>
+        </div>
+      {{/each}}
+    {{else}}
+      <p class="empty-cart">¡El carrito está vacío!</p>
+    {{/if}}
+  </div>
+  <a cid="{{carrito}}" class="empty-cart-btn"><img src="/static/images/empty-cart-icon.svg" alt="Empty Cart">Vaciar carrito</a>
+  <a href="/products" class="back-btn"> <img src="/static/images/back-icon.svg" alt="Back Icon"> Volver a productos</a>
+
+</main>
+
+<script src="/static/js/cart.js"></script>

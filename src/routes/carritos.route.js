@@ -5,6 +5,12 @@ import { CarritosDao } from "../models/dao/carritos.dao.js";
 const router = Router();
 const CarritosService = new CarritosDao(CarritosModel);
 
+router.get("/", async (req, res) => {
+  const carritos = await CarritosService.getAll();
+  if (!carritos) return res.status(404).json("No se encontraron carritos");
+  res.json(carritos);
+});
+
 //ENDPOINT GET ALL FROM CART
 router.get("/:cid", async (req, res) => {
   const { cid } = req.params;
@@ -18,7 +24,9 @@ router.post("/", async (req, res) => {
   const carrito = req.body;
   const result = await CarritosService.create(carrito);
   if (!result) return res.status(400).json("Error al crear el carrito");
-  res.status(201).json("Carrito creado con éxito");
+  res
+    .status(201)
+    .json({ message: "Carrito creado con éxito", cid: result._id });
 });
 
 //ENDPOINT POST PRODUCT TO CART
@@ -36,6 +44,7 @@ router.delete("/:cid/products/:pid", async (req, res) => {
   const result = await CarritosService.removeAllFromCart(cid, pid);
   if (!result)
     return res.status(400).json("Error al eliminar producto del carrito");
+  res.status(201).json({ message: "Producto eliminado del carrito con éxito" });
 });
 
 //ENDPOINT DELETE EMPTY CART
@@ -43,6 +52,7 @@ router.delete("/:cid", async (req, res) => {
   const { cid } = req.params;
   const result = await CarritosService.emptyCart(cid);
   if (!result) return res.status(400).json("Error al vaciar el carrito");
+  res.status(201).json({ message: "Carrito vaciado con éxito" });
 });
 
 //ENDPOINT PUT BY ID
