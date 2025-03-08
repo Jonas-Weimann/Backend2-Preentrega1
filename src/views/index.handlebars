@@ -15,7 +15,11 @@
         <div class="product-card">
           <span class="card--cat">{{formatear this.category}}</span>
           <a href="/products/{{this._id}}">
-            <img src="{{this.thumbnails}}" alt="{{this.title}}" />
+            <img
+              src="/static/images/placeholder.png"
+              {{!Acá voy a implementar una librería para slides. Provisoriamente uso un placeholder en lugar de this.thumbnails}}
+              alt="{{this.title}}"
+            />
           </a>
           <span class="card--title"> {{this.title}}</span>
           <span class="card--price"><b>{{formatear this.price}}</b></span>

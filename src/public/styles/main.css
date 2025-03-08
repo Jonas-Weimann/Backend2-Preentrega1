@@ -84,7 +84,7 @@ body {
   border-radius: 2rem;
   width: 20rem;
   min-height: 30rem;
-  background-color: #0977ac;
+  background-color: #10334b;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -105,12 +105,15 @@ body {
 }
 
 .product-card a {
-  object-fit: cover;
-  align-self: flex-start;
   width: 100%;
   border-radius: 1rem;
-  background-color: #2323238f;
   aspect-ratio: 1/1;
+}
+
+.product-card img {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
 }
 
 .product-card .card--cat {
