@@ -1,4 +1,4 @@
-import { Common } from "./common.dao.js";
+import { Common } from "./mongo.dao.js";
 
 export class ProductosDao extends Common {
   async createMany(object) {

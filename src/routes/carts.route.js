@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { CarritosModel } from "../models/carritos.model.js";
-import { CarritosDao } from "../models/dao/carritos.dao.js";
+import { CarritosModel } from "../daos/mongodb/models/cart.model.js";
+import { CarritosDao } from "../daos/mongodb/cart.dao.js";
 
 const router = Router();
 const CarritosService = new CarritosDao(CarritosModel);

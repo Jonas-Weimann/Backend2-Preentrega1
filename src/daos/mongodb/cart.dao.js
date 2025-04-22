@@ -1,5 +1,5 @@
-import { Common } from "./common.dao.js";
-import { ProductosModel } from "../productos.model.js";
+import { Common } from "./mongo.dao.js";
+import { ProductosModel } from "./models/product.model.js";
 
 export class CarritosDao extends Common {
   async getAllFromCart(id) {

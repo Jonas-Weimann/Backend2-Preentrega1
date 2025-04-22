@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { ProductosModel } from "../models/productos.model.js";
+import { ProductosModel } from "../daos/mongodb/models/product.model.js";
 import { formatear, subtotal } from "../utils.js";
-import { CarritosModel } from "../models/carritos.model.js";
-import { CarritosDao } from "../models/dao/carritos.dao.js";
-import { ProductosDao } from "../models/dao/productos.dao.js";
+import { CarritosModel } from "../daos/mongodb/models/cart.model.js";
+import { CarritosDao } from "../daos/mongodb/cart.dao.js";
+import { ProductosDao } from "../daos/mongodb/product.dao.js";
 
 const CarritosService = new CarritosDao(CarritosModel);
 const ProductosService = new ProductosDao(ProductosModel);
