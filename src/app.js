@@ -4,9 +4,8 @@ import handlebars from "express-handlebars";
 import session from "express-session";
 import path from "path";
 import MongoStore from "connect-mongo";
-import ViewsRoute from "./routes/views.route.js";
-import ProductsRoute from "./routes/products.route.js";
-import CartsRoute from "./routes/carts.route.js";
+import apiRouter from "./routes/index.js";
+import ViewsRoute from "./routes/views.router.js";
 import { initMongoDB } from "./daos/mongodb/connection.js";
 import { formatear, subtotal } from "./utils.js";
 import { upload, __dirname } from "./utils.js";
@@ -59,8 +58,7 @@ app.set("view engine", "handlebars");
 app.use("/static", express.static(path.join(__dirname, "/public")));
 
 app.use("/", ViewsRoute);
-app.use("/api/products/", ProductsRoute);
-app.use("/api/carts/", CartsRoute);
+app.use("/api", apiRouter);
 
 //ENDPOINT POST PARA CARGAR LAS IMAGENES CON MULTER
 app.post("/upload", upload.single("img"), (req, res) => {

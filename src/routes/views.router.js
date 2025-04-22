@@ -1,12 +1,7 @@
 import { Router } from "express";
-import { ProductosModel } from "../daos/mongodb/models/product.model.js";
+import { ProductModel } from "../daos/mongodb/models/product.model.js";
 import { formatear, subtotal } from "../utils.js";
-import { CarritosModel } from "../daos/mongodb/models/cart.model.js";
-import { CarritosDao } from "../daos/mongodb/cart.dao.js";
-import { ProductosDao } from "../daos/mongodb/product.dao.js";
-
-const CarritosService = new CarritosDao(CarritosModel);
-const ProductosService = new ProductosDao(ProductosModel);
+import { productController } from "../controllers/product.controller.js";
 
 const router = Router();
 
@@ -18,13 +13,10 @@ router.get("/products", async (req, res) => {
   const { limit, page, sort, query } = req.query;
 
   //Obtengo todos los productos paginados y filtrados según la query
-  let productos = await ProductosModel.paginate(
-    query ? JSON.parse(query) : {},
-    {
-      page: page ? parseInt(page) : 1,
-      limit: 10,
-    }
-  );
+  let productos = await ProductModel.paginate(query ? JSON.parse(query) : {}, {
+    page: page ? parseInt(page) : 1,
+    limit: 10,
+  });
 
   if (!productos) {
     return res.render("error", { error: "No se encontraron productos" });
@@ -73,7 +65,7 @@ router.get("/products", async (req, res) => {
 
 router.get("/products/:pid", async (req, res) => {
   const { pid } = req.params;
-  const producto = await ProductosService.getById(pid);
+  const producto = await ProductService.getById(pid);
   if (!producto)
     return res.render("error", { error: "Producto no encontrado" });
   //Renderizo una vista con el producto seleccionado
@@ -82,7 +74,7 @@ router.get("/products/:pid", async (req, res) => {
 
 router.get("/carts/:cid", async (req, res) => {
   const { cid } = req.params;
-  const carritoConProducts = await CarritosService.getAllFromCart(cid);
+  const carritoConProducts = await CartService.getAllFromCart(cid);
   if (!carritoConProducts)
     return res.render("error", { error: "Carrito no encontrado" });
   let products = [];

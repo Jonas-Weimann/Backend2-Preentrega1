@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 import multer from "multer";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -33,4 +34,19 @@ export const formatear = (input) => {
 
 export const subtotal = (price, quantity) => {
   return formatear(price * quantity);
+};
+
+export default class CustomError extends Error {
+  constructor(message, status) {
+    super(message);
+    this.status = status;
+  }
+}
+
+export const createHash = (password) => {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+};
+
+export const isValidPassword = (user, password) => {
+  return bcrypt.compareSync(password, user.password);
 };

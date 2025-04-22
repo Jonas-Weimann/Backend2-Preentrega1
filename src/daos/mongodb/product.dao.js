@@ -1,12 +1,13 @@
-import { Common } from "./mongo.dao.js";
+import { ProductModel } from "./models/product.model.js";
+import MongoDao from "./mongo.dao.js";
 
-export class ProductosDao extends Common {
-  async createMany(object) {
-    try {
-      const result = await this.model.insertMany(object);
-      return result;
-    } catch (e) {
-      return null;
-    }
+class ProductDaoMongo extends MongoDao {
+  constructor(model) {
+    super(model);
   }
+  paginate = async (filter, options) => {
+    return await ProductModel.paginate(filter, options);
+  };
 }
+
+export const productDao = new ProductDaoMongo(ProductModel);

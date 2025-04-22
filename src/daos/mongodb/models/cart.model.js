@@ -1,8 +1,8 @@
 import { Schema, model } from "mongoose";
 import paginateV2 from "mongoose-paginate-v2";
 
-const carritoCollection = "Carritos";
-const carritoSchema = new Schema({
+const cartCollection = "Carritos";
+const cartSchema = new Schema({
   //POPULATE
   products: {
     type: [
@@ -18,6 +18,6 @@ const carritoSchema = new Schema({
   },
 });
 
-carritoSchema.plugin(paginateV2);
+cartSchema.plugin(paginateV2);
 
-export const CarritosModel = model(carritoCollection, carritoSchema);
+export const CartModel = model(cartCollection, cartSchema);

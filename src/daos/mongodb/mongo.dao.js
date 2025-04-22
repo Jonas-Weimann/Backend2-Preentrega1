@@ -1,48 +1,61 @@
-export class Common {
+export default class MongoDao {
   constructor(model) {
     this.model = model;
   }
 
-  async getAll() {
+  create = async (body) => {
     try {
-      const result = await this.model.find();
+      const result = await this.model.create(body);
       return result;
-    } catch (e) {
-      return null;
+    } catch (error) {
+      throw new Error(error);
     }
-  }
-  async getById(id) {
+  };
+
+  getAll = async () => {
+    try {
+      const result = await this.model.find({});
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+
+  getById = async (id) => {
     try {
       const result = await this.model.findById(id);
       return result;
-    } catch (e) {
-      return null;
+    } catch (error) {
+      throw new Error(error);
     }
-  }
-  async create(object) {
+  };
+
+  update = async (id, body) => {
     try {
-      const result = await this.model.create(object);
-      return result;
-    } catch (e) {
-      return null;
-    }
-  }
-  async update(id, objectUpdate) {
-    try {
-      const result = await this.model.findByIdAndUpdate(id, objectUpdate, {
+      const result = await this.model.findByIdAndUpdate(id, body, {
         new: true,
       });
       return result;
-    } catch (e) {
-      return null;
+    } catch (error) {
+      throw new Error(error);
     }
-  }
-  async delete(id) {
+  };
+
+  delete = async (id) => {
     try {
-      const result = await this.model.deleteById(id);
+      const result = await this.model.findByIdAndDelete(id);
       return result;
-    } catch (e) {
-      return null;
+    } catch (error) {
+      throw new Error(error);
     }
-  }
+  };
+
+  deleteAll = async () => {
+    try {
+      const result = await this.model.deleteMany({});
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
 }

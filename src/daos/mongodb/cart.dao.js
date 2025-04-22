@@ -1,7 +1,7 @@
-import { Common } from "./mongo.dao.js";
-import { ProductosModel } from "./models/product.model.js";
+import { ProductModel } from "./models/product.model.js";
+import MongoDao from "./mongo.dao.js";
 
-export class CarritosDao extends Common {
+export class CartDao extends MongoDao {
   async getAllFromCart(id) {
     try {
       //Busco el carrito y lo pueblo con los productos
@@ -16,7 +16,7 @@ export class CarritosDao extends Common {
     try {
       //Busco el carrito y el producto
       const carrito = await this.model.findById(id);
-      const producto = await ProductosModel.findById(idProducto);
+      const producto = await ProductModel.findById(idProducto);
       if (!carrito || !producto) return null;
 
       //Busco el producto en el carrito
@@ -43,7 +43,7 @@ export class CarritosDao extends Common {
     try {
       //Busco el carrito y el producto
       const carrito = await this.model.findById(id);
-      const producto = await ProductosModel.findById(idProducto);
+      const producto = await ProductModel.findById(idProducto);
       if (!carrito || !producto) return null;
 
       //Busco el producto en el carrito
@@ -77,7 +77,7 @@ export class CarritosDao extends Common {
     try {
       //Busco el carrito y el producto
       const carrito = await this.model.findById(id);
-      const producto = await ProductosModel.findById(idProducto);
+      const producto = await ProductModel.findById(idProducto);
       if (!carrito || !producto) return null;
 
       //Elimino el producto del carrito sin importar su quantity
@@ -114,7 +114,7 @@ export class CarritosDao extends Common {
     try {
       //Busco el carrito y el producto
       const carrito = await this.model.findById(id);
-      const producto = await ProductosModel.findById(idProducto);
+      const producto = await ProductModel.findById(idProducto);
       if (!carrito || !producto) return null;
 
       //Busco el producto en el carrito
