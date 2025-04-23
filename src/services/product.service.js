@@ -58,7 +58,7 @@ class ProductService {
     try {
       const response = await this.dao.getById(id);
       if (!response) throw new CustomError("Product not found", 404);
-      return product;
+      return response;
     } catch (error) {
       throw error;
     }
