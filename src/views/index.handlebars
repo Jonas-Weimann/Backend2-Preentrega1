@@ -11,9 +11,9 @@
       </a>
     {{/if}}
     <div class="products-container">
-      {{#each productos}}
+      {{#each products}}
         <div class="product-card">
-          <span class="card--cat">{{formatear this.category}}</span>
+          <span class="card--cat">{{format this.category}}</span>
           <a href="/products/{{this._id}}">
             <img
               src="/static/images/placeholder.png"
@@ -22,7 +22,7 @@
             />
           </a>
           <span class="card--title"> {{this.title}}</span>
-          <span class="card--price"><b>{{formatear this.price}}</b></span>
+          <span class="card--price"><b>{{format this.price}}</b></span>
         </div>
       {{/each}}
     </div>

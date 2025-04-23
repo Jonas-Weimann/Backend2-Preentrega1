@@ -5,7 +5,10 @@ import MongoDao from "./mongo.dao.js";
 export class CartDao extends MongoDao {
   async getAllFromCart(id) {
     try {
-      const result = await this.model.findById(id).populate("products.product");
+      const result = await this.model
+        .findById(id)
+        .populate("products.product")
+        .lean();
       return result;
     } catch (error) {
       throw new Error(error);

@@ -5,21 +5,21 @@
   <div class="product-detail-container">
     <div class="product-detail">
       <div class="product-detail-image">
-        <img src="{{producto.thumbnails}}" alt="{{producto.title}}" />
+        <img src="/static/images/placeholder.png" alt="{{product.title}}" />
       </div>
       <div class="product-detail-info">
-        <span class="product-detail--cat">{{formatear producto.category}}</span>
-        <h1 class="product-detail--title">{{producto.title}}</h1>
-        <p class="product-detail--desc">{{producto.description}}</p>
-        <span class="product-detail--price"><b>{{formatear
-              producto.price
+        <span class="product-detail--cat">{{format product.category}}</span>
+        <h1 class="product-detail--title">{{product.title}}</h1>
+        <p class="product-detail--desc">{{product.description}}</p>
+        <span class="product-detail--price"><b>{{format
+              product.price
             }}</b></span>
         <div class="btn-container">
           <a class="back-btn" href="/products"><img
               src="/static/images/back-icon.svg"
               alt="Back Icon"
             />Volver a productos</a>
-          <a class="add-to-cart-btn" id="{{producto._id}}">
+          <a class="add-to-cart-btn" id="{{product._id}}">
             <img
               src="/static/images/add-to-cart-icon.svg"
               alt="Add To Cart Icon"

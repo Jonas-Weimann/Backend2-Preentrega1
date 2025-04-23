@@ -32,15 +32,15 @@ class ProductService {
 
       //Creo los links de paginación
       products["prevLink"] = products.hasPrevPage
-        ? `/?limit=${limit}&page=${products.prevPage}&sort=${
-            sort || ""
-          }&query=${query || ""}`
+        ? `?limit=${limit}&page=${products.prevPage}&sort=${sort || ""}&query=${
+            query || ""
+          }`
         : null;
 
       products["nextLink"] = products.hasNextPage
-        ? `/?limit=${limit}&page=${products.nextPage}&sort=${
-            sort || ""
-          }&query=${query || ""}`
+        ? `?limit=${limit}&page=${products.nextPage}&sort=${sort || ""}&query=${
+            query || ""
+          }`
         : null;
 
       //Cambio el nombre de docs a payload

@@ -18,7 +18,7 @@ const config = multer.diskStorage({
 
 export const upload = multer({ storage: config });
 
-export const formatear = (input) => {
+export const format = (input) => {
   if (typeof input === "number") {
     return new Intl.NumberFormat("es-Ar", {
       style: "currency",
@@ -33,7 +33,7 @@ export const formatear = (input) => {
 };
 
 export const subtotal = (price, quantity) => {
-  return formatear(price * quantity);
+  return format(price * quantity);
 };
 
 export default class CustomError extends Error {

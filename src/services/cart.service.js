@@ -17,7 +17,7 @@ class CartService {
   getAllFromCart = async (cid) => {
     try {
       const response = await this.dao.getAllFromCart(cid);
-      if (!response) throw new CustomError("No products found in cart", 404);
+      if (!response) throw new CustomError("Cart not found", 404);
       return response;
     } catch (error) {
       throw error;

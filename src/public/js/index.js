@@ -7,7 +7,7 @@ const createCart = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        localStorage.setItem("CART_ID", data.cid);
+        localStorage.setItem("CART_ID", data._id);
       });
   }
 };

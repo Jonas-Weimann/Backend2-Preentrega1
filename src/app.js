@@ -7,7 +7,7 @@ import MongoStore from "connect-mongo";
 import apiRouter from "./routes/index.js";
 import ViewsRoute from "./routes/views.router.js";
 import { initMongoDB } from "./daos/mongodb/connection.js";
-import { formatear, subtotal } from "./utils.js";
+import { format, subtotal } from "./utils.js";
 import { upload, __dirname } from "./utils.js";
 import "dotenv/config.js";
 
@@ -47,7 +47,7 @@ app.engine(
   "handlebars",
   handlebars.engine({
     helpers: {
-      formatear,
+      format,
       subtotal,
     },
   })
