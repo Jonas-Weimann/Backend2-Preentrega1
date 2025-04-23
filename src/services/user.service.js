@@ -2,6 +2,8 @@ import CustomError, { createHash, isValidPassword } from "../utils.js";
 import { userDao } from "../daos/mongodb/user.dao.js";
 import jwt from "jsonwebtoken";
 import "dotenv/config.js";
+import { productService } from "./product.service.js";
+import { cartService } from "./cart.service.js";
 
 class UserService {
   constructor(dao) {
@@ -77,7 +79,8 @@ class UserService {
       const existingUser = await this.dao.getByEmail(email);
       if (existingUser) throw new CustomError("User already exists", 400);
       const hashedPassword = createHash(password);
-      const userData = { ...body, password: hashedPassword };
+      const newCart = await cartService.create();
+      const userData = { ...body, password: hashedPassword, cart: newCart._id };
       const newUser = await this.dao.create(userData);
       return newUser;
     } catch (error) {
@@ -92,6 +95,7 @@ class UserService {
       email: user.email,
       age: user.age,
       role: user.role,
+      cart: user.cart,
     };
     return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" });
   };

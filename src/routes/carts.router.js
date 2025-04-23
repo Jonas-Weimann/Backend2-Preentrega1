@@ -16,20 +16,20 @@ const {
   updateQuantity,
 } = cartController;
 
-router.get("/", getAllCarts);
+router.get("/", passportCall("current"), checkRole("admin"), getAllCarts);
 
 router.get("/:cid", getAllFromCart);
 
 router.post("/", createCart);
 
-router.post("/:cid/products/:pid", addToCart);
+router.post("/:cid/products/:pid", passportCall("current"), addToCart);
 
-router.delete("/:cid/products/:pid", deleteFromCart);
+router.delete("/:cid/products/:pid", passportCall("current"), deleteFromCart);
 
-router.delete("/:cid", emptyCart);
+router.delete("/:cid", passportCall("current"), emptyCart);
 
-router.put("/:cid", updateCart);
+router.put("/:cid", passportCall("current"), updateCart);
 
-router.put("/:cid/products/:pid", updateQuantity);
+router.put("/:cid/products/:pid", passportCall("current"), updateQuantity);
 
 export default router;

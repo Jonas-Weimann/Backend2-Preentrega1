@@ -6,27 +6,48 @@ class UserController {
   }
   login = async (req, res, next) => {
     try {
-      const id = req.session.passport.user;
-      const user = await userService.getById(id);
+      const { email, password } = req.body;
+      const user = await this.service.login(email, password);
       const token = this.service.generateToken(user);
-      res.cookie("token", token, { httpOnly: true }).redirect("/api/profile");
+      res.cookie("token", token, { httpOnly: true });
+      res.redirect("/");
     } catch (error) {
+      console.log(error);
       next(error);
     }
   };
   register = async (req, res, next) => {
     try {
-      res.status(200).redirect("/api/");
+      const { first_name, last_name, email, password, age } = req.body;
+      await this.service.register({
+        first_name,
+        last_name,
+        email,
+        password,
+        age,
+      });
+      res.status(200).redirect("/login");
     } catch (error) {
       next(error);
     }
   };
-  logout = async (req, res) => {
+  logout = async (req, res, next) => {
     try {
       req.session.destroy();
-      res.redirect("/api/");
+      res.redirect("/");
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      next(error);
+    }
+  };
+  current = async (req, res, next) => {
+    try {
+      const user = req.user;
+      if (!user) {
+        return res.status(401).json({ error: "User not authenticated" });
+      }
+      res.status(200).json({ user });
+    } catch (error) {
+      next(error);
     }
   };
 }

@@ -7,6 +7,14 @@ export class ViewsController {
     res.render("landing", {});
   }
 
+  renderLogin(req, res) {
+    res.render("login", {});
+  }
+
+  renderRegister(req, res) {
+    res.render("register", {});
+  }
+
   async renderProducts(req, res) {
     try {
       const { limit, page, sort, query } = req.query;
@@ -34,7 +42,10 @@ export class ViewsController {
       if (!product) {
         return res.render("error", { error: "Product not found" });
       }
-      res.render("product", { product: JSON.parse(JSON.stringify(product)) });
+      res.render("product", {
+        product: JSON.parse(JSON.stringify(product)),
+        cid: req.user.cart,
+      });
     } catch (error) {
       res.render("error", { error: error.message });
     }
