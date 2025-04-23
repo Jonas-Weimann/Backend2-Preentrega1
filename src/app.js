@@ -1,15 +1,17 @@
 import express, { json, urlencoded } from "express";
-import cookieParser from "cookie-parser";
 import handlebars from "express-handlebars";
 import session from "express-session";
+import passport from "passport";
+import cookieParser from "cookie-parser";
 import path from "path";
 import MongoStore from "connect-mongo";
 import apiRouter from "./routes/index.js";
 import ViewsRoute from "./routes/views.router.js";
 import { initMongoDB } from "./daos/mongodb/connection.js";
-import { format, subtotal } from "./utils.js";
-import { upload, __dirname } from "./utils.js";
+import { upload, __dirname, format, subtotal } from "./utils.js";
+import { errorHandler } from "./middlewares/error.handler.js";
 import "dotenv/config.js";
+import "./config/passport/jwt.strategy.js";
 
 const app = express();
 const PORT = 8080;
@@ -42,6 +44,8 @@ const sessionConfig = {
 };
 
 app.use(session(sessionConfig));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.engine(
   "handlebars",
@@ -67,6 +71,8 @@ app.post("/upload", upload.single("img"), (req, res) => {
   }
   res.send(`/static/images/${req.file.filename}`);
 });
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

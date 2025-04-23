@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { viewsController } from "../controllers/views.controller.js";
+import { passportCall } from "../middlewares/passport.call.js";
 
 const router = Router();
 const { renderLanding, renderProducts, renderProductById, renderCartById } =
@@ -8,6 +9,6 @@ const { renderLanding, renderProducts, renderProductById, renderCartById } =
 router.get("/", renderLanding);
 router.get("/products", renderProducts);
 router.get("/products/:pid", renderProductById);
-router.get("/carts/:cid", renderCartById);
+router.get("/carts/:cid", passportCall("current"), renderCartById);
 
 export default router;
