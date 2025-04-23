@@ -3,6 +3,9 @@
     <img class="cart-icon" src="/static/images/cart-icon.svg" alt="Cart Icon" />
   </div>
   <h1>PRODUCTOS</h1>
+  <form action="/api/sessions/logout" method="POST">
+    <input type="submit" value="Cerrar sesión" />
+  </form>
   <h2>{{currentPage}}</h2>
   <div class="paginate-container">
     {{#if prevPage}}

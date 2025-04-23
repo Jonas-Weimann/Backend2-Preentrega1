@@ -33,7 +33,7 @@ class UserController {
   };
   logout = async (req, res, next) => {
     try {
-      req.session.destroy();
+      res.clearCookie("token");
       res.redirect("/");
     } catch (error) {
       next(error);
