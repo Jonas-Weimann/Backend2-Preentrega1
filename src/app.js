@@ -10,11 +10,10 @@ import ViewsRoute from "./routes/views.router.js";
 import { initMongoDB } from "./daos/mongodb/connection.js";
 import { upload, __dirname, format, subtotal } from "./utils.js";
 import { errorHandler } from "./middlewares/error.handler.js";
-import "dotenv/config.js";
 import "./config/passport/jwt.strategy.js";
+import config from "./config/config.js";
 
 const app = express();
-const PORT = 8080;
 
 initMongoDB()
   .then(() => console.log("Connected to MongoDB"))
@@ -22,7 +21,7 @@ initMongoDB()
 
 app.use(json());
 app.use(urlencoded({ extended: true }));
-app.use(cookieParser(process.env.SECRET_KEY));
+app.use(cookieParser(config.SECRET_KEY));
 
 const cookieConfig = {
   maxAge: 180000,
@@ -34,10 +33,10 @@ const ttlSeconds = 180;
 
 const sessionConfig = {
   store: MongoStore.create({
-    mongoUrl: process.env.MONGODB_URI,
+    mongoUrl: config.MONGODB_URI,
     ttl: ttlSeconds,
   }),
-  secret: process.env.SECRET_KEY,
+  secret: config.SECRET_KEY,
   resave: false,
   saveUninitialized: false,
   cookie: cookieConfig,
@@ -74,6 +73,6 @@ app.post("/upload", upload.single("img"), (req, res) => {
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(config.PORT, () => {
+  console.log(`Server is running on port ${config.PORT}`);
 });

@@ -1,7 +1,7 @@
 import passport from "passport";
 import { Strategy, ExtractJwt } from "passport-jwt";
 import { userService } from "../../services/user.service.js";
-import "dotenv/config.js";
+import "../config.js";
 
 const cookieExtractor = (req) => {
   return req.cookies.token;
