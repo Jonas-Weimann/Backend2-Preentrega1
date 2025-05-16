@@ -4,17 +4,22 @@ import paginateV2 from "mongoose-paginate-v2";
 const cartCollection = "Carritos";
 const cartSchema = new Schema({
   //POPULATE
-  products: {
-    type: [
-      {
-        product: {
-          type: Schema.Types.ObjectId,
-          ref: "Productos",
-        },
-        quantity: Number,
+  products: [
+    {
+      _id: false,
+      product: {
+        type: Schema.Types.ObjectId,
+        ref: "Productos",
       },
-    ],
-    default: [],
+      quantity: {
+        type: Number,
+        default: 1,
+      },
+    },
+  ],
+  total: {
+    type: Number,
+    default: 0,
   },
 });
 

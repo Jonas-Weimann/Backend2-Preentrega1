@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
 const userCollection = "users";
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
   first_name: {
     type: String,
     required: true,
@@ -29,8 +29,9 @@ const UserSchema = new mongoose.Schema({
     max: 100,
   },
   cart: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "carts",
+    default: null,
   },
   role: {
     type: String,
@@ -39,4 +40,4 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-export const UserModel = mongoose.model(userCollection, UserSchema);
+export const UserModel = model(userCollection, UserSchema);

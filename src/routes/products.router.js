@@ -1,5 +1,7 @@
 import { Router } from "express";
 import { productController } from "../controllers/product.controller.js";
+import { passportCall } from "../middlewares/passport.call.js";
+import { checkRole } from "../middlewares/check.role.js";
 
 const router = Router();
 
@@ -15,8 +17,8 @@ router.route("/").get(getAllProducts).post(createProduct);
 
 router
   .route("/:pid")
-  .get(getProductById)
-  .put(updateProduct)
-  .delete(deleteProductById);
+  .get(passportCall("current"), getProductById)
+  .put(passportCall("current"), checkRole("admin"), updateProduct)
+  .delete(passportCall("current"), checkRole("admin"), deleteProductById);
 
 export default router;

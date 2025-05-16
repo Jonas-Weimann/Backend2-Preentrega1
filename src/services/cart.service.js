@@ -5,6 +5,17 @@ class CartService {
   constructor(dao) {
     this.dao = dao;
   }
+
+  getById = async (id) => {
+    try {
+      const response = await this.dao.getById(id);
+      if (!response) throw new CustomError("Cart not found", 404);
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   getAllCarts = async () => {
     try {
       const response = await this.dao.getAll();

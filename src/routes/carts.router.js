@@ -22,7 +22,12 @@ router.get("/:cid", getAllFromCart);
 
 router.post("/", createCart);
 
-router.post("/:cid/products/:pid", passportCall("current"), addToCart);
+router.post(
+  "/:cid/products/:pid",
+  passportCall("current"),
+  checkRole("user"),
+  addToCart
+);
 
 router.delete("/:cid/products/:pid", passportCall("current"), deleteFromCart);
 

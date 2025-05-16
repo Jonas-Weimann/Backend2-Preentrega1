@@ -55,16 +55,18 @@ export class ViewsController {
     try {
       const { cid } = req.params;
       const cart = await cartService.getAllFromCart(cid);
-
       const products = (cart.products || []).map((item) => ({
         ...item.product,
         quantity: item.quantity,
       }));
+      const total = cart.total || 0;
 
       res.render("cart", {
         subtotal,
+        format,
         cart: cid,
         products,
+        total: total,
       });
     } catch (error) {
       res.render("error", { error: error.message });

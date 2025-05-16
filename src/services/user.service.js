@@ -1,9 +1,9 @@
 import CustomError, { createHash, isValidPassword } from "../utils.js";
 import { userDao } from "../daos/mongodb/user.dao.js";
 import jwt from "jsonwebtoken";
-import "dotenv/config.js";
-import { productService } from "./product.service.js";
+import config from "../config/config.js";
 import { cartService } from "./cart.service.js";
+import UserDTO from "../dto/user.dto.js";
 
 class UserService {
   constructor(dao) {
@@ -21,7 +21,7 @@ class UserService {
     try {
       const response = await this.dao.getById(id);
       if (!response) throw new CustomError("User not found", 404);
-      return response;
+      return new UserDTO(response);
     } catch (error) {
       throw error;
     }
@@ -73,16 +73,29 @@ class UserService {
       throw error;
     }
   };
-  register = async (body) => {
+  register = async (user) => {
     try {
-      const { email, password } = body;
+      const { email, password } = user;
       const existingUser = await this.dao.getByEmail(email);
       if (existingUser) throw new CustomError("User already exists", 400);
       const hashedPassword = createHash(password);
       const newCart = await cartService.create();
-      const userData = { ...body, password: hashedPassword, cart: newCart._id };
-      const newUser = await this.dao.create(userData);
-      return newUser;
+      if (email === config.ADMIN_EMAIL && password === config.ADMIN_PASSWORD) {
+        const adminData = {
+          ...user,
+          password: hashedPassword,
+          cart: newCart._id,
+          role: "admin",
+        };
+        return await this.dao.create(adminData);
+      } else {
+        const userData = {
+          ...user,
+          password: hashedPassword,
+          cart: newCart._id,
+        };
+        return await this.dao.create(userData);
+      }
     } catch (error) {
       throw error;
     }
@@ -97,7 +110,7 @@ class UserService {
       role: user.role,
       cart: user.cart,
     };
-    return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" });
+    return jwt.sign(payload, config.JWT_SECRET, { expiresIn: "1h" });
   };
 }
 

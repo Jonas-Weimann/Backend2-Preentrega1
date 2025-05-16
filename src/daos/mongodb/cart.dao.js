@@ -20,21 +20,30 @@ export class CartDao extends MongoDao {
       const cart = await this.model.findById(id);
       const product = await ProductModel.findById(productId);
       if (!cart || !product) return null;
+      if (product.stock <= 0) {
+        throw new Error(`"${product.name}" is out of stock`);
+      }
 
       const productInCart = cart.products.find(
         (prod) => String(prod.product) === String(productId)
       );
 
       if (productInCart) {
+        if (productInCart.quantity + 1 > product.stock) {
+          throw new Error(
+            `Only ${product.stock} units of "${product.name}" available`
+          );
+        }
         productInCart.quantity++;
       } else {
         cart.products.push({ product: productId, quantity: 1 });
       }
+      cart.total += product.price;
 
       const result = await this.update(id, cart);
       return result;
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
   }
 
@@ -43,7 +52,8 @@ export class CartDao extends MongoDao {
       const cart = await this.model.findById(id);
       const product = await ProductModel.findById(productId);
       if (!cart || !product) return null;
-
+      cart.total -= product.price;
+      if (cart.total < 0) cart.total = 0;
       const productInCart = cart.products.find(
         (prod) => String(prod.product) === String(productId)
       );
