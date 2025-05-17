@@ -18,19 +18,19 @@ export class ViewsController {
   async renderProducts(req, res) {
     try {
       const { limit, page, sort, query } = req.query;
-
+      const cid = req.user.cart;
       const result = await productService.getAll({ limit, page, sort, query });
 
       const { payload, prevLink, nextLink } = result;
-
       res.render("index", {
         products: JSON.parse(JSON.stringify(payload)),
         format,
+        currentPage: page || 1,
         prevPage: prevLink,
         nextPage: nextLink,
+        cid: cid,
       });
     } catch (error) {
-      console.log(error);
       res.render("error", { error: error.message });
     }
   }
@@ -71,6 +71,14 @@ export class ViewsController {
     } catch (error) {
       res.render("error", { error: error.message });
     }
+  }
+  renderResetPassword(req, res) {
+    const { token } = req.params;
+    res.render("resetPassword", { token });
+  }
+  renderProfile(req, res) {
+    const user = req.user;
+    res.render("profile", { user });
   }
 }
 

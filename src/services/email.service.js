@@ -35,6 +35,6 @@ export const recoveryEmail = (destination, token) => {
     to: destination,
     subject: "Recupera tu contraseña",
     html: `<p>Para recuperar tu contraseña, haz click en el siguiente enlace:</p>
-           <a href="${config.FRONTEND_URL}/recovery/${token}">Recuperar contraseña</a>`,
+           <a href="${config.HOME_URL}/reset-password/${token}">Recuperar contraseña</a>`,
   };
 };

@@ -112,6 +112,24 @@ class UserService {
     };
     return jwt.sign(payload, config.JWT_SECRET, { expiresIn: "1h" });
   };
+  verifyToken = (token) => {
+    try {
+      const decoded = jwt.verify(token, config.JWT_SECRET);
+      return decoded;
+    } catch (error) {
+      throw new CustomError("Invalid token", 401);
+    }
+  };
+  changePassword = async (email, password) => {
+    try {
+      const user = await this.dao.getByEmail(email);
+      if (!user) throw new CustomError("User not found", 404);
+      const hashedPassword = createHash(password);
+      return await this.dao.update(user._id, { password: hashedPassword });
+    } catch (error) {
+      throw error;
+    }
+  };
 }
 
 export const userService = new UserService(userDao);

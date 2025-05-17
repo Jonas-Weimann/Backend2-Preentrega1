@@ -1,6 +1,10 @@
 <h1>BIENVENIDO {{user.first_name}} {{user.last_name}}</h1>
 <p>Tu ID de usuario es: {{user._id}}</p>
 <p>Tu mail es: {{user.email}}</p>
-<form action="/api/users/logout" method="POST">
+<form action="/api/sessions/logout" method="POST">
   <input type="submit" value="Cerrar sesión" />
+</form>
+<form action="/api/email/recovery" method="POST">
+  <input type="hidden" name="email" value={{user.email}} />
+  <input type="submit" value="Cambiar mi contraseña" />
 </form>

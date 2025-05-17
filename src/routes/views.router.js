@@ -11,13 +11,17 @@ const {
   renderCartById,
   renderLogin,
   renderRegister,
+  renderResetPassword,
+  renderProfile,
 } = viewsController;
 
 router.get("/", renderLanding);
-router.get("/products", renderProducts);
+router.get("/profile", passportCall("current"), renderProfile);
+router.get("/products", passportCall("current"), renderProducts);
 router.get("/products/:pid", passportCall("current"), renderProductById);
 router.get("/login", validateLogOut, renderLogin);
 router.get("/register", validateLogOut, renderRegister);
 router.get("/carts/:cid", passportCall("current"), renderCartById);
+router.get("/reset-password/:token", renderResetPassword);
 
 export default router;

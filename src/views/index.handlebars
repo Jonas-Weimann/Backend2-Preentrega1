@@ -1,18 +1,29 @@
-<main class="product-page">
+<main class="product-page" data-cart-id="{{cid}}">
   <div class="cart-icon-container">
     <img class="cart-icon" src="/static/images/cart-icon.svg" alt="Cart Icon" />
   </div>
+  <div class="user-icon-container">
+    <img class="user-icon" src="/static/images/user-icon.svg" alt="User Icon" />
+  </div>
   <h1>PRODUCTOS</h1>
-  <form action="/api/sessions/logout" method="POST">
-    <input type="submit" value="Cerrar sesión" />
-  </form>
-  <h2>{{currentPage}}</h2>
-  <div class="paginate-container">
+  <div class="paginate-navigation">
     {{#if prevPage}}
       <a href="{{prevPage}}" class="paginate-link">
         <img src="/static/images/prev.svg" alt="Previa" />
       </a>
+    {{else}}
+      <span class="paginate-link placeholder"></span>
     {{/if}}
+    <h2>{{currentPage}}</h2>
+    {{#if nextPage}}
+      <a href="{{nextPage}}" class="paginate-link">
+        <img src="/static/images/next.svg" alt="Siguiente" />
+      </a>
+    {{else}}
+      <span class="paginate-link placeholder"></span>
+    {{/if}}
+  </div>
+  <div class="paginate-container">
     <div class="products-container">
       {{#each products}}
         <div class="product-card">
@@ -29,10 +40,6 @@
         </div>
       {{/each}}
     </div>
-    {{#if nextPage}}
-      <a href="{{nextPage}}" class="paginate-link">
-        <img src="/static/images/next.svg" alt="Siguiente" />
-      </a>
-    {{/if}}
   </div>
 </main>
+<script src="/static/js/index.js"></script>

@@ -19,4 +19,5 @@ export default {
   PORT_GOOGLE: process.env.PORT_GOOGLE,
   USER_GOOGLE: process.env.USER_GOOGLE,
   PASS_GOOGLE: process.env.PASS_GOOGLE,
+  HOME_URL: process.env.HOME_URL,
 };

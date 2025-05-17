@@ -50,6 +50,20 @@ class UserController {
       next(error);
     }
   };
+  changePassword = async (req, res, next) => {
+    try {
+      const { token, password } = req.body;
+      const user = await this.service.verifyToken(token);
+      if (!user) {
+        return res.status(400).json({ error: "Invalid token" });
+      }
+      const { email } = user;
+      await this.service.changePassword(email, password);
+      res.status(200).json({ message: "Password changed successfully" });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export const userController = new UserController(userService);

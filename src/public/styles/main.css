@@ -39,7 +39,23 @@ body {
   z-index: 10;
 }
 
-.cart-icon {
+.user-icon-container {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  top: 3rem;
+  right: 9rem;
+  padding: 1rem;
+  border-radius: 50%;
+  border: 3px solid #00f6ff;
+  cursor: pointer;
+}
+
+.cart-icon,
+.user-icon {
   width: 2rem;
   height: 2rem;
 }
@@ -62,6 +78,23 @@ body {
   font-size: 4rem;
   color: #06d7c4;
   font-weight: 200;
+}
+
+.paginate-navigation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3rem;
+  width: 60rem;
+  justify-content: center;
+}
+
+.paginate-navigation h2 {
+  text-align: center;
+  font-family: poppins;
+  font-size: 2rem;
+  color: #06d7c4;
+  font-weight: 600;
 }
 
 .paginate-container {
@@ -168,6 +201,10 @@ body {
   height: 100%;
   object-fit: cover;
   cursor: pointer;
+}
+
+.paginate-link.placeholder {
+  visibility: hidden;
 }
 
 /*REAL TIME PRODUCTS PAGE*/
