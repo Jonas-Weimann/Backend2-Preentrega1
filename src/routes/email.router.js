@@ -7,7 +7,7 @@ const router = Router();
 const { sendRegistrationEmail, sendConfirmationEmail, sendRecoveryEmail } =
   emailController;
 
-router.post("/registerSuccess", passportCall("current"), sendRegistrationEmail);
+router.post("/registerSuccess", sendRegistrationEmail);
 router.post("/purchaseSuccess", passportCall("current"), sendConfirmationEmail);
 router.post("/recovery", passportCall("current"), sendRecoveryEmail);
 

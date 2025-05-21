@@ -671,3 +671,169 @@ body {
   width: 1rem;
   height: 1rem;
 }
+
+/*LOGIN REGISTER RESET-PASSWORD PAGE*/
+.login-page::before,
+.register-page::before,
+.resetpass-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
+
+.login-page,
+.register-page,
+.resetpass-page {
+  width: 100vw;
+  height: 100vh;
+  background: url("/static/images/login-bg.jpg") no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.login-container,
+.register-container,
+.reset-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 30%;
+  min-width: 25rem;
+  background: rgba(0, 199, 182, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 199, 182, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 199, 182, 0.1);
+  padding: 4rem;
+  border-radius: 2rem;
+}
+
+.login-container h1,
+.register-container h1,
+.reset-container h1 {
+  font-family: bits;
+  font-size: 2rem;
+  text-align: center;
+  color: #20dad8;
+  font-weight: 200;
+}
+
+.login-container p,
+.register-container p,
+.reset-container p {
+  font-family: poppins;
+  font-size: 1.1rem;
+  text-align: center;
+  color: white;
+}
+
+.login-container p a,
+.register-container p a,
+.reset-container p a {
+  font-family: poppins;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #20dad8;
+  text-decoration: none;
+}
+
+.login-container #login,
+.register-container #register,
+.reset-container #setpass {
+  width: 100%;
+  font-family: poppins;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  color: #20dad8;
+  text-decoration: none;
+  border: 2px solid #20dad8;
+  margin-top: 1rem;
+  padding: 0.5rem 2rem;
+  border-radius: 1rem;
+  background-color: #122943a8;
+}
+
+.login-container #login:hover,
+.register-container #register:hover,
+.reset-container #setpass:hover {
+  background-color: #20dad8;
+  color: #00253d;
+  cursor: pointer;
+}
+
+.login-page form,
+.register-page form,
+.resetpass-page form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  min-width: 17rem;
+}
+
+@media (max-width: 1023px) {
+  .login-container,
+  .register-container,
+  .reset-container {
+    width: 90%;
+    min-width: 0;
+  }
+  .login-container h1,
+  .register-container h1,
+  .reset-container h1 {
+    font-size: 2rem;
+  }
+}
+
+.input-box {
+  position: relative;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 0.5rem;
+  background: transparent;
+  backdrop-filter: blur(7px);
+  border: none;
+  border-bottom: 2px solid #20dad8;
+  border-radius: 0.5rem 0.5rem 0 0;
+  color: white;
+  font-size: 1.1rem;
+  outline: none;
+}
+
+.input-box label {
+  position: absolute;
+  left: 0.5rem;
+  top: 0.5rem;
+  color: #00ffff;
+  font-family: poppins;
+  font-size: 1.1rem;
+  font-weight: 600;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+  top: -1.2rem;
+  font-size: 0.9rem;
+}
+
+#message {
+  font-family: poppins;
+  font-size: 1.1rem;
+  color: red;
+  text-align: center;
+}

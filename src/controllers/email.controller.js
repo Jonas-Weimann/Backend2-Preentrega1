@@ -12,8 +12,7 @@ class EmailController {
   }
   sendRegistrationEmail = async (req, res, next) => {
     try {
-      const { user } = req;
-      const { email, first_name } = user;
+      const { email, first_name } = req.body;
       const response = await this.transporter.sendMail(
         registrationEmail(email, first_name)
       );
