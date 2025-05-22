@@ -76,7 +76,8 @@ export class ViewsController {
   }
   renderResetPassword(req, res) {
     const { token } = req.params;
-    res.render("resetPassword", { token });
+    const { error } = req.query;
+    res.render("resetPassword", { token: token, error: error || null });
   }
   renderProfile(req, res) {
     const user = req.user;

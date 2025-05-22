@@ -1,10 +1,20 @@
-<h1>BIENVENIDO {{user.first_name}} {{user.last_name}}</h1>
-<p>Tu ID de usuario es: {{user._id}}</p>
-<p>Tu mail es: {{user.email}}</p>
-<form action="/api/sessions/logout" method="POST">
-  <input type="submit" value="Cerrar sesión" />
-</form>
-<form action="/api/email/recovery" method="POST">
-  <input type="hidden" name="email" value={{user.email}} />
-  <input type="submit" value="Cambiar mi contraseña" />
-</form>
+<main class="profile-page">
+  <a href="/products" class="back-btn">
+    <img src="/static/images/back-icon.svg" alt="Back Icon" /></a>
+  <div class="profile-container">
+    <h1>Bienvenido <br />{{user.first_name}} {{user.last_name}}</h1>
+    <div class="profile-info">
+      <p>Tu ID de usuario es: {{user._id}}</p>
+      <p>Tu email es: {{user.email}}</p>
+    </div>
+    <div class="profile-actions">
+      <form action="/api/sessions/logout" method="POST">
+        <input type="submit" value="Cerrar sesión" id="logout" />
+      </form>
+      <form action="/api/email/recovery" method="POST">
+        <input type="hidden" name="email" value={{user.email}} />
+        <input type="submit" value="Cambiar mi contraseña" id="change-pass" />
+      </form>
+    </div>
+  </div>
+</main>

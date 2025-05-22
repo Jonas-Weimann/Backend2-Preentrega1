@@ -1,4 +1,5 @@
 import { userService } from "../services/user.service.js";
+import bcrypt from "bcrypt";
 
 class UserController {
   constructor(service) {
@@ -53,11 +54,16 @@ class UserController {
   changePassword = async (req, res, next) => {
     try {
       const { token, password } = req.body;
-      const user = await this.service.verifyToken(token);
-      if (!user) {
+      const userPayload = await this.service.verifyToken(token);
+      if (!userPayload) {
         return res.status(400).json({ error: "Invalid token" });
       }
-      const { email } = user;
+      const userdb = await this.service.getByEmail(userPayload.email);
+      const { email } = userdb;
+      const areSamePasswords = await bcrypt.compare(password, userdb.password);
+      if (areSamePasswords) {
+        return res.redirect(`/reset-password/${token}?error=same`);
+      }
       await this.service.changePassword(email, password);
       res.status(200).json({ message: "Password changed successfully" });
     } catch (error) {

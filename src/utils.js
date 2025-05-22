@@ -322,3 +322,22 @@ export const purchaseTemplateHtml = (name) => {
     </div>
   `;
 };
+
+export const recoverPasswordHtml = (token) => {
+  return `
+    <div style="font-family: Arial, sans-serif; background-color: #e0f7f9; padding: 40px; text-align: center; color: #008b8b;">
+      <h2 style="font-size: 24px; margin-bottom: 20px;">¿Olvidaste tu contraseña?</h2>
+      <p style="font-size: 16px; margin-bottom: 30px;">
+        Para recuperar el acceso a tu cuenta, hacé clic en el siguiente botón:
+      </p>
+      <a href="http://localhost:3000/reset-password/${token}" 
+         style="background-color: #00a6a6; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-size: 16px;">
+        Recuperar contraseña
+      </a>
+      <p style="font-size: 14px; margin-top: 30px; color: #555;">
+        Si no solicitaste este cambio, simplemente ignorá este mensaje.
+      </p>
+      <div style="font-weight: bold; font-size: 18px; margin-top: 20px;">Exprintify</div>
+    </div>
+  `;
+};

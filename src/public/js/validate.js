@@ -26,7 +26,6 @@ form.addEventListener("submit", async (e) => {
   const formData = new FormData(form);
   const data = Object.fromEntries(formData.entries());
   try {
-    console.log("enviando datos...................");
     await fetch("/api/email/registerSuccess", {
       method: "POST",
       headers: {
@@ -34,7 +33,6 @@ form.addEventListener("submit", async (e) => {
       },
       body: JSON.stringify(data),
     });
-    console.log(data);
     form.submit();
   } catch (error) {
     console.error("Error al registrarse:", error);

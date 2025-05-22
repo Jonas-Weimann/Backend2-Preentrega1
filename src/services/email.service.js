@@ -1,6 +1,10 @@
 import { createTransport } from "nodemailer";
 import config from "../config/config.js";
-import { registerTemplateHtml, purchaseTemplateHtml } from "../utils.js";
+import {
+  registerTemplateHtml,
+  purchaseTemplateHtml,
+  recoverPasswordHtml,
+} from "../utils.js";
 
 export const transporter = createTransport({
   service: "gmail",
@@ -34,7 +38,6 @@ export const recoveryEmail = (destination, token) => {
     from: config.USER_GOOGLE,
     to: destination,
     subject: "Recupera tu contraseña",
-    html: `<p>Para recuperar tu contraseña, haz click en el siguiente enlace:</p>
-           <a href="${config.HOME_URL}/reset-password/${token}">Recuperar contraseña</a>`,
+    html: recoverPasswordHtml(token),
   };
 };
