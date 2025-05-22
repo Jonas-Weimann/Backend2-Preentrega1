@@ -54,6 +54,7 @@ export class ViewsController {
   async renderCartById(req, res) {
     try {
       const { cid } = req.params;
+      const { user } = req.body;
       const cart = await cartService.getAllFromCart(cid);
       const products = (cart.products || []).map((item) => ({
         ...item.product,
@@ -66,6 +67,7 @@ export class ViewsController {
         format,
         cart: cid,
         products,
+        user: user,
         total: total,
       });
     } catch (error) {

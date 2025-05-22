@@ -99,6 +99,7 @@ export class CartDao extends MongoDao {
       const cart = await this.model.findById(id);
       if (!cart) return null;
 
+      cart.total = 0;
       cart.products = [];
 
       const result = await this.update(id, cart);

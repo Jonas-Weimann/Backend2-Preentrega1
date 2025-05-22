@@ -1,3 +1,4 @@
+import { cartService } from "../services/cart.service.js";
 import { ticketService } from "../services/ticket.service.js";
 
 class TicketController {
@@ -9,7 +10,8 @@ class TicketController {
     try {
       const { user } = req;
       const ticket = await this.service.generateTicket(user);
-      res.status(200).json({ status: "success", payload: ticket });
+      req.ticket = ticket;
+      next();
     } catch (error) {
       next(error);
     }

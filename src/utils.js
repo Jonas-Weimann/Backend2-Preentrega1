@@ -314,5 +314,11 @@ a[x-apple-data-detectors],
 };
 
 export const purchaseTemplateHtml = (name) => {
-  return `${name}`;
+  return `
+    <div style="font-family: Arial, sans-serif; background-color: #e0f7f9; padding: 40px; text-align: center; color: #008b8b;">
+      <h1 style="font-size: 28px; margin-bottom: 10px;">¡Gracias por tu compra, ${name}!</h1>
+      <p style="font-size: 18px; margin-bottom: 30px;">Apreciamos tu confianza en nosotros.</p>
+      <div style="font-weight: bold; font-size: 20px; color: #00a6a6;">Exprintify</div>
+    </div>
+  `;
 };
